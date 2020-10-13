@@ -1,6 +1,11 @@
 # sequelize-perpustakaan
 
+Live-backup: [Youtube](https://www.youtube.com/watch?v=hK_-fP639QE&t=1028s)
+
 Database-name: perpustakaan
+
+Database-relation: 
+![Database-relation](https://i.ibb.co/XkJD5xR/Whats-App-Image-2020-10-12-at-10-55-23.jpg)
 
 Table rak
 ```
