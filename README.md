@@ -1,6 +1,6 @@
 # sequelize-perpustakaan
 
-Live-backup: [Youtube](https://www.youtube.com/watch?v=hK_-fP639QE&t=1028s)
+Live-backup: [part1](https://www.youtube.com/watch?v=hK_-fP639QE&t=1028s) [part2](https://youtu.be/K4XE-5yjPwk)
 
 Database-name: perpustakaan
 
