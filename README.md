@@ -25,7 +25,7 @@ sequelize model:create --name peminjaman --attributes tanggal_pinjam:date,tangga
 ```
 Table petugas
 ```
-sequelize model:create --name petugas --attributes nama_petugas:string,jabatan_petugas:varchar,no_telp_petugas:string,alamat_petugas:string
+sequelize model:create --name petugas --attributes nama_petugas:string,jabatan_petugas:string,no_telp_petugas:string,alamat_petugas:string
 ```
 Table anggota
 ```
