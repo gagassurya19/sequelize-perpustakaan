@@ -11,14 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // inisiasi foreignKey id_rak
+      this.belongsTo(models.rak, {
+        foreignKey: 'id_rak',
+        as: 'rak'
+      })
     }
   };
   buku.init({
     id_buku: {
-      allowNull: false,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true
     },
     id_rak: DataTypes.INTEGER,
     judul_buku: DataTypes.STRING,

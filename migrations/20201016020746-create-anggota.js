@@ -1,30 +1,30 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('buku', {
-      id_buku: {
+    await queryInterface.createTable('anggota', {
+      id_anggota: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_rak: {
-        type: Sequelize.INTEGER
-      },
-      judul_buku: {
+      kode_anggota: {
         type: Sequelize.STRING
       },
-      penulis_buku: {
+      nama_anggota: {
         type: Sequelize.STRING
       },
-      penerbit_buku: {
+      jk_anggota: {
         type: Sequelize.STRING
       },
-      tahun_penerbit: {
+      jurusan_anggota: {
         type: Sequelize.STRING
       },
-      stok: {
-        type: Sequelize.INTEGER
+      no_telp_anggota: {
+        type: Sequelize.STRING
+      },
+      alamat_anggota: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('buku');
+    await queryInterface.dropTable('anggota');
   }
 };

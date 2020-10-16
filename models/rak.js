@@ -15,9 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   rak.init({
     id_rak: {
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      allowNull: true,
+      autoIncrement: true
     },
     nama_rak: DataTypes.STRING,
     lokasi_rak: DataTypes.STRING

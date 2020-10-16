@@ -11,18 +11,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
+      // primaryKey tidak diwajibkan menginisiasi
+      this.hasMany(models.pengembalian, {
+        foreignKey: "id_anggota",
+        as: "pengembalian"
+      })
+
+      this.hasMany(models.peminjaman, {
+        foreignKey: "id_anggota",
+        as: "peminjaman"
+      })
     }
   };
   anggota.init({
     id_anggota: {
-      allowNull: false,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true
     },
     kode_anggota: DataTypes.STRING,
     nama_anggota: DataTypes.STRING,
-    jk_anggota: DataTypes.CHAR,
+    jk_anggota: DataTypes.STRING,
     jurusan_anggota: DataTypes.STRING,
     no_telp_anggota: DataTypes.STRING,
     alamat_anggota: DataTypes.STRING

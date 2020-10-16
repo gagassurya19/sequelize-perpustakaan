@@ -11,14 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.pengembalian, {
+        foreignKey: 'id_anggota',
+        as: 'pengembalian'
+      })
+
+      this.hasMany(models.peminjaman, {
+        foreignKey: 'id_anggota',
+        as: 'peminjaman'
+      })
     }
   };
   petugas.init({
     id_petugas: {
-      allowNull: false,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true
     },
     nama_petugas: DataTypes.STRING,
     jabatan_petugas: DataTypes.STRING,

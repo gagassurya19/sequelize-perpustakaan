@@ -15,13 +15,28 @@ module.exports = {
         type: Sequelize.DOUBLE
       },
       id_buku: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "buku",
+          key: "id_buku"
+        }
       },
       id_anggota: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "anggota",
+          key: "id_anggota"
+        }
       },
       id_petugas: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "petugas",
+          key: "id_petugas"
+        }
       },
       createdAt: {
         allowNull: false,

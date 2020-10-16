@@ -11,14 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.buku, {
+        foreignKey: 'id_buku',
+        as: 'buku'
+      })
+
+      this.belongsTo(models.anggota, {
+        foreignKey: 'id_anggota',
+        as: 'anggota'
+      })
+
+      this.belongsTo(models.petugas, {
+        foreignKey: 'id_petugas',
+        as: 'petugas'
+      })
     }
   };
   pengembalian.init({
     id_pengembalian: {
-      allowNull: false,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true
     },
     tanggal_pengembalian: DataTypes.DATE,
     denda: DataTypes.DOUBLE,
