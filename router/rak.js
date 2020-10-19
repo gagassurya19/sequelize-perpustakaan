@@ -63,8 +63,20 @@ app.put("/", async(req, res) => {
     })
 })
 
-app.delete("/", async(req, res) => {
-
+app.delete("/:id_rak", async(req, res) => { 
+    let param = { id_rak: req.params.id_rak }
+    rak.destroy({where: param})
+    .then(result => {
+        res.json({
+            message: 'Data destroyed',
+            data: result
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: error.message
+        })
+    })
 })
 
 module.exports = app
