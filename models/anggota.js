@@ -35,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     jk_anggota: DataTypes.STRING,
     jurusan_anggota: DataTypes.STRING,
     no_telp_anggota: DataTypes.STRING,
-    alamat_anggota: DataTypes.STRING
+    alamat_anggota: DataTypes.STRING,
+    avatar: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'anggota',

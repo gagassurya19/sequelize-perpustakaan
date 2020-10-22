@@ -1,6 +1,27 @@
 const express = require('express')
 const app = express()
 
+// call library multer
+// ----------------------------------------------------
+const multer = require("multer")
+// digunakan untuk membaca data request dari form-data
+const path = require("path")
+// digunakan untuk mengatur direktori file
+const fs = require("fs")
+const { error } = require('console')
+// digunakan untuk mengatur file
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./img/avatar/petugas")
+    },
+    filename: (req, file, cb) => {
+        cb(null, "avatar-" + Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage})
+// ----------------------------------------------------
+
 // call model petugas
 const petugas = require('../models/index').petugas
 
@@ -19,13 +40,14 @@ app.get("/", async(req, res) => {
     })
 })
 
-app.post("/", async(req, res) => {
+app.post("/", upload.single("avatar"), async(req, res) => {
     // tampung data
     let data = {
         nama_petugas: req.body.nama_petugas,
         jabatan_petugas: req.body.jabatan_petugas,
         no_telp_petugas: req.body.no_telp_petugas,
-        alamat_petugas: req.body.alamat_petugas
+        alamat_petugas: req.body.alamat_petugas,
+        avatar: req.file.filename
     }
 
     petugas.create(data)
@@ -42,7 +64,7 @@ app.post("/", async(req, res) => {
     })
 })
 
-app.put("/", async(req, res) => {
+app.put("/", upload.single("avatar"), async(req, res) => {
     // tampung data
     let data = {
         nama_petugas: req.body.nama_petugas,
@@ -52,6 +74,17 @@ app.put("/", async(req, res) => {
     }
 
     let param = { id_petugas: req.body.id_petugas }
+
+    if(req.file){
+        let oldPetugas = await petugas.findOne({ where: param })
+        let oldAvatar = oldPetugas.avatar
+
+        // delete oldAvatar
+        let pathFile = path.join(__dirname, "../img/avatar/petugas", oldAvatar)
+        fs.unlink(pathFile, error => console.log(error))
+
+        data.avatar = req.file.filename // masukin data baru
+    }
 
     petugas.update(data,{where : param})
     .then(result => {
@@ -69,6 +102,14 @@ app.put("/", async(req, res) => {
 
 app.delete("/:id_petugas", async(req, res) => { 
     let param = { id_petugas: req.params.id_petugas }
+
+    let oldPetugas = await petugas.findOne({ where: param })
+    let oldAvatar = oldPetugas.avatar
+
+    // delete oldAvatar
+    let pathFile = path.join(__dirname, "../img/avatar/petugas", oldAvatar)
+    fs.unlink(pathFile, error => console.log(error))
+
     petugas.destroy({where: param})
     .then(result => {
         res.json({

@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     penulis_buku: DataTypes.STRING,
     penerbit_buku: DataTypes.STRING,
     tahun_penerbit: DataTypes.STRING,
-    stok: DataTypes.INTEGER
+    stok: DataTypes.INTEGER,
+    cover: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'buku',
