@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const md5 = require('md5')
 
 // call library multer
 // ----------------------------------------------------
@@ -42,12 +43,15 @@ app.get("/", async(req, res) => {
 
 app.post("/", upload.single("avatar"), async(req, res) => {
     // tampung data
+    // ERROR saat terdapat data yang tidak terisi.
     let data = {
         nama_petugas: req.body.nama_petugas,
         jabatan_petugas: req.body.jabatan_petugas,
         no_telp_petugas: req.body.no_telp_petugas,
         alamat_petugas: req.body.alamat_petugas,
-        avatar: req.file.filename
+        avatar: req.file.filename,
+        user: req.body.user,
+        password: md5(req.body.password)
     }
 
     petugas.create(data)
@@ -70,7 +74,9 @@ app.put("/", upload.single("avatar"), async(req, res) => {
         nama_petugas: req.body.nama_petugas,
         jabatan_petugas: req.body.jabatan_petugas,
         no_telp_petugas: req.body.no_telp_petugas,
-        alamat_petugas: req.body.alamat_petugas
+        alamat_petugas: req.body.alamat_petugas,
+        user: req.body.user,
+        password: md5(req.body.password)
     }
 
     let param = { id_petugas: req.body.id_petugas }

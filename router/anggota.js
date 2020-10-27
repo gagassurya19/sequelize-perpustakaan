@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const md5 = require('md5') //hashing md5
 
 // call library multer
 // ----------------------------------------------------
@@ -49,7 +50,9 @@ app.post("/", upload.single("avatar"), async(req, res) => {
         jurusan_anggota: req.body.jurusan_anggota,
         no_telp_anggota: req.body.no_telp_anggota,
         alamat_anggota: req.body.alamat_anggota,
-        avatar: req.file.filename
+        avatar: req.file.filename,
+        user: req.body.user,
+        password: md5(req.body.password)
     }
 
     anggota.create(data)
@@ -74,7 +77,9 @@ app.put("/", upload.single("avatar"), async(req, res) => {
         jk_anggota: req.body.jk_anggota,
         jurusan_anggota: req.body.jurusan_anggota,
         no_telp_anggota: req.body.no_telp_anggota,
-        alamat_anggota: req.body.alamat_anggota
+        alamat_anggota: req.body.alamat_anggota,
+        user: req.body.user,
+        password: md5(req.body.password)
     }
 
     let param = { id_anggota: req.body.id_anggota }

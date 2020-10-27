@@ -28,6 +28,10 @@ const buku = require('../models/index').buku
 // middleware for allow the request from body
 app.use(express.urlencoded({extended:true}))
 
+// auth
+const verifyToken = require('./tokenVerify')
+app.use(verifyToken) // memberikan token kesemua endpoint
+
 app.get("/", async(req, res) => {
     buku.findAll({
         include: ['rak'] // add table where there is foreignkey in the table
