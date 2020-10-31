@@ -4,11 +4,10 @@ verifyToken = (req, res, next) => {
     // ambil token dari header
     let headers = req.headers.authorization
     let token = null
-
-    console.log(token);
+    
     if(headers != null){
         // ambil kode token 
-        token = headers.split(" ",[1]) // ambil bagian ke 1 array
+        token = headers.split(" ")[1] // ambil bagian ke 1 array
     }
 
     if(token == null){
